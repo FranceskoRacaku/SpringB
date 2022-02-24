@@ -45,7 +45,7 @@ public class UsersController {
         usersService.deleteUser(userId);
     }
 
-    @PatchMapping (path = "{id}")
+    @PutMapping(path = "{id}")
     public void updateUser(
             @PathVariable Integer id,
             @RequestParam(required = false) String userName,
