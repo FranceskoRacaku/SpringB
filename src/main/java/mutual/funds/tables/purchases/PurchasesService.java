@@ -32,7 +32,7 @@ public class PurchasesService {
     }
 
     public List<Purchases> getPurchasesByUser(Integer userId){
-        return purchasesRepository.findAll();
+        return purchasesRepository.findAllBy(userId);
 
     }
 

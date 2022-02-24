@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface PurchasesRepository
         extends JpaRepository<Purchases, Integer> {
 
-    List<Purchases> findAllById(Integer userId);
+
+    List<Purchases> findAllBy(Integer userId);
 
 //    @Query("SELECT s FROM Purchases s WHERE s.userId = ?1")
 //    Optional<Purchases> findPurchasesByUserId(String userId);
