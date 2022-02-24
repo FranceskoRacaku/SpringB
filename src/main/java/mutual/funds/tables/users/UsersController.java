@@ -45,12 +45,12 @@ public class UsersController {
         usersService.deleteUser(userId);
     }
 
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "{userId}")
     public void updateUser(
-            @PathVariable Integer id,
+            @PathVariable Integer userId,
             @RequestParam(required = false) String userName,
             @RequestParam(required = false) String userEmail,
             @RequestParam(required = false) Integer userAge){
-        usersService.updateUser(id, userName, userEmail, userAge);
+        usersService.updateUser(userId, userName, userEmail, userAge);
     }
 }
