@@ -26,7 +26,7 @@ public class FundsController {
 
     }
 
-    @GetMapping("/funds/{id}")
+    @GetMapping("{id}")
     Funds fund(@PathVariable Integer id){
         return fundsRepository.findById(id)
                 .orElseThrow(() -> new FundNotFoundException(id));
