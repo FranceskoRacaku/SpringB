@@ -31,7 +31,7 @@ public class PurchasesController {
         return purchasesService.getPurchase(id);
     }
 
-    @GetMapping(path = "user/{userId}")
+    @GetMapping(path = "/user/{userId}")
     public Optional<Purchases> getPurchasesByUserId(@PathVariable Integer userId){
         return purchasesService.getPurchasesByUserId(userId);
     }
