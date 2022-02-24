@@ -3,7 +3,10 @@ package mutual.funds.tables.users;
 
 
 import mutual.funds.tables.purchases.Purchases;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,12 +48,21 @@ public class UsersController {
         usersService.deleteUser(userId);
     }
 
-    @PutMapping(path = "{userId}")
-    public void updateUser(
-            @PathVariable Integer userId,
-            @RequestParam(required = false) String userName,
-            @RequestParam(required = false) String userEmail,
-            @RequestParam(required = false) Integer userAge){
-        usersService.updateUser(userId, userName, userEmail, userAge);
+
+    @PatchMapping("{userId}")
+    public ResponseEntity<Users> updateUser(
+            @PathVariable(value = "userId") Integer userId,
+            @RequestBody Users user){
+        return new ResponseEntity<Users>(usersService.updateUser(user, userId), HttpStatus.OK);
+
     }
+//
+//    @PatchMapping(path = "{userId}")
+//    public void updateUser(
+//            @PathVariable Integer userId,
+//            @RequestParam(required = false) String userName,
+//            @RequestParam(required = false) String userEmail,
+//            @RequestParam(required = false) Integer userAge){
+//        usersService.updateUser(userId, userName, userEmail, userAge);
+//    }
 }

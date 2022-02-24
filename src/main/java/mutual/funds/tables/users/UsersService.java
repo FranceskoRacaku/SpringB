@@ -3,6 +3,7 @@ package mutual.funds.tables.users;
 
 import mutual.funds.tables.funds.Funds;
 import mutual.funds.tables.purchases.Purchases;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,30 +58,44 @@ public class UsersService {
     }
 
 
+//    @Transactional
+//    public void updateUser(Integer userId, String userName, String userEmail, Integer userAge) {
+//        Users users = usersRepository.findById(userId)
+//                .orElseThrow(() -> new IllegalStateException(
+//                        "User with id " + userId + " does no exist!!")
+//                );
+//
+//
+//        if (userName != null &&
+//                userName.length() > 0 &&
+//                !Objects.equals(users.getUserName(), userName)) {
+//            users.setUserName(userName);
+//        }
+//
+//        if (userEmail != null &&
+//                userEmail.length() > 0 &&
+//                !Objects.equals(users.getUserEmail(), userEmail)) {
+//            Optional<Users> usersOptional = usersRepository
+//                    .findUsersByUserEmail(userEmail);
+//            if (usersOptional.isPresent()) {
+//                throw new IllegalStateException("Email Taken");
+//            }
+//            users.setUserEmail(userEmail);
+//        }
+//        users.setUserAge(userAge);
+//    }
+
     @Transactional
-    public void updateUser(Integer userId, String userName, String userEmail, Integer userAge) {
-        Users users = usersRepository.findById(userId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "User with id " + userId + " does no exist!!")
-                );
+    public Users updateUser(Users user, Integer userId) {
 
+        Users existingUser = usersRepository.findById(userId).orElseThrow(
+                () -> new ResourceNotFoundException("USER Id" + userId));
 
-        if (userName != null &&
-                userName.length() > 0 &&
-                !Objects.equals(users.getUserName(), userName)) {
-            users.setUserName(userName);
-        }
+        existingUser.setUserName(user.getUserName());
+        existingUser.setUserEmail(user.getUserEmail());
+        existingUser.setUserAge(user.getUserAge());
 
-        if (userEmail != null &&
-                userEmail.length() > 0 &&
-                !Objects.equals(users.getUserEmail(), userEmail)) {
-            Optional<Users> usersOptional = usersRepository
-                    .findUsersByUserEmail(userEmail);
-            if (usersOptional.isPresent()) {
-                throw new IllegalStateException("Email Taken");
-            }
-            users.setUserEmail(userEmail);
-        }
-        users.setUserAge(userAge);
+        usersRepository.save(existingUser);
+        return existingUser;
     }
 }
