@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.plaf.OptionPaneUI;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class FundsService {
 
+    private List<Funds> funds = new ArrayList<>();
     private final FundsRepository fundsRepository;
 
     @Autowired
@@ -23,6 +25,15 @@ public class FundsService {
 
     public List<Funds> getFunds() {
         return fundsRepository.findAll();
+    }
+
+    public Funds getFund(String id){
+        return funds.stream()
+                .filter(t -> t.getId()
+                        .equals(id))
+                        .findFirst()
+                        .get();
+
     }
 
     public void addFunds(Funds funds){
