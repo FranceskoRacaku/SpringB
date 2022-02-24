@@ -58,10 +58,10 @@ public class UsersService {
 
 
     @Transactional
-    public void updateUser(Integer userId, String userName, String userEmail, Integer userAge) {
-        Users users = usersRepository.findById(userId)
+    public void updateUser(Integer id, String userName, String userEmail, Integer userAge) {
+        Users users = usersRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
-                        "fund with id " + userId + " does no exist!!")
+                        "User with id " + id + " does no exist!!")
                 );
 
 
