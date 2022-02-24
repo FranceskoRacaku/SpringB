@@ -7,15 +7,7 @@ import javax.persistence.*;
 @Table
 public class Funds {
     @Id
-    @SequenceGenerator(
-            name = "funds_sequence",
-            sequenceName = "funds_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "funds_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String symbol;
     private String name;

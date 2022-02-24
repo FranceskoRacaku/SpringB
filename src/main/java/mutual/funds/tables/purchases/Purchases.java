@@ -7,15 +7,7 @@ import javax.persistence.*;
 @Table
 public class Purchases {
     @Id
-    @SequenceGenerator(
-            name = "purchases_sequence",
-            sequenceName = "purchases_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "purchases_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Float amount;
     private Integer fundId;
