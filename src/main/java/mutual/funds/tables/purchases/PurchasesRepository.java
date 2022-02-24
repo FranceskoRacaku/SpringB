@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 public interface PurchasesRepository
         extends JpaRepository<Purchases, Integer> {
+
+    @Query("SELECT e FROM Purchases e where e.userId = ?1")
     List<Purchases> findAllById(Integer userId);
 
 //    @Query("SELECT s FROM Purchases s WHERE s.userId = ?1")

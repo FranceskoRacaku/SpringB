@@ -2,6 +2,7 @@ package mutual.funds.tables.purchases;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,7 +33,8 @@ public class PurchasesService {
     }
 
     public List<Purchases> getPurchasesByUser(Integer userId){
-        return purchasesRepository.findAll();
+        return purchasesRepository.findAllById(userId);
+
 
     }
 
