@@ -27,20 +27,19 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
-    public Optional<Users> getUser(Integer id){
+    public Optional<Users> getUser(Integer id) {
         return usersRepository.findById(id);
 
     }
 
-    public void addUsers(Users users){
+    public void addUsers(Users users) {
         Optional<Users> usersByUserName = usersRepository
                 .findUsersByUserName(users.getUserName());
         Optional<Users> usersByUserEmail = usersRepository
                 .findUsersByUserEmail(users.getUserEmail());
-        if(usersByUserName.isPresent()) {
+        if (usersByUserName.isPresent()) {
             throw new IllegalStateException("Username Taken");
-        }
-            else if(usersByUserEmail.isPresent()){
+        } else if (usersByUserEmail.isPresent()) {
             throw new IllegalStateException("Email Taken");
         }
         usersRepository.save(users);
@@ -50,9 +49,9 @@ public class UsersService {
 
     public void deleteUser(Integer userId) {
         boolean exists = usersRepository.existsById(userId);
-        if (!exists){
+        if (!exists) {
             throw new IllegalStateException(
-                    "User with id "+ userId + " does not exists!!");
+                    "User with id " + userId + " does not exists!!");
         }
         usersRepository.deleteById(userId);
     }
@@ -69,11 +68,6 @@ public class UsersService {
         if (userName != null &&
                 userName.length() > 0 &&
                 !Objects.equals(users.getUserName(), userName)) {
-            Optional<Users> usersOptional = usersRepository
-                    .findUsersByUserName(userName);
-            if (usersOptional.isPresent()) {
-                throw new IllegalStateException("Name Taken");
-            }
             users.setUserName(userName);
         }
 
@@ -87,12 +81,6 @@ public class UsersService {
             }
             users.setUserEmail(userEmail);
         }
-        if (userAge != null &&
-                userAge > 0 &&
-                !Objects.equals(users.getUserAge(), userAge)) {
-            users.setUserAge(userAge);
-        }
+        users.setUserAge(userAge);
     }
-
-
 }
