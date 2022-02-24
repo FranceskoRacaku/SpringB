@@ -20,7 +20,7 @@ public class FundsController {
         this.fundsService = fundsService;
     }
 
-
+    @GetMapping
     public List<Funds> getFunds() {
         return fundsService.getFunds();
 
