@@ -29,17 +29,16 @@ public class UsersService {
     public void addUsers(Users users){
         Optional<Users> usersByUserName = usersRepository
                 .findUsersByUserName(users.getUserName());
-        if(usersByUserName.isPresent()){
-            throw new IllegalStateException("Username Taken");
-        }
-        usersRepository.save(users);
-
         Optional<Users> usersByUserEmail = usersRepository
                 .findUsersByUserEmail(users.getUserEmail());
-        if(usersByUserEmail.isPresent()){
+        if(usersByUserName.isPresent()) {
+            throw new IllegalStateException("Username Taken");
+        }
+            else if(usersByUserEmail.isPresent()){
             throw new IllegalStateException("Email Taken");
         }
         usersRepository.save(users);
+
 
     }
 

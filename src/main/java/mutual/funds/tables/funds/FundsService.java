@@ -28,14 +28,12 @@ public class FundsService {
     public void addFunds(Funds funds){
         Optional<Funds> fundsBySymbol = fundsRepository
                 .findFundsBySymbol(funds.getSymbol());
+        Optional<Funds> fundsByName = fundsRepository
+                .findFundsByName(funds.getName());
         if(fundsBySymbol.isPresent()){
             throw new IllegalStateException("Symbol Taken");
         }
-        fundsRepository.save(funds);
-
-        Optional<Funds> fundsByName = fundsRepository
-                .findFundsByName(funds.getName());
-        if(fundsByName.isPresent()){
+        else if(fundsByName.isPresent()){
             throw new IllegalStateException("Name Taken");
         }
         fundsRepository.save(funds);
