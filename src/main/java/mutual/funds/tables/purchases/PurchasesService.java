@@ -31,6 +31,11 @@ public class PurchasesService {
 
     }
 
+    public Optional<Purchases> getPurchaseByUserId(Integer userId){
+        return purchasesRepository.findById(userId);
+
+    }
+
     public void addPurchase(Purchases purchases){
         purchasesRepository.save(purchases);
 

@@ -31,6 +31,11 @@ public class PurchasesController {
         return purchasesService.getPurchase(id);
     }
 
+    @GetMapping(path = "user/{userId}")
+    public Optional<Purchases> getPurchaseByUserId(@PathVariable Integer userId){
+        return purchasesService.getPurchase(userId);
+    }
+
     @PostMapping
     public void addPurchase(@RequestBody Purchases purchases) {
         purchasesService.addPurchase(purchases);
