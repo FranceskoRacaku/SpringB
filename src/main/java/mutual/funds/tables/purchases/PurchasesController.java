@@ -1,7 +1,6 @@
 package mutual.funds.tables.purchases;
 
 
-import mutual.funds.tables.funds.Funds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +31,8 @@ public class PurchasesController {
     }
 
     @GetMapping(path = "/user/{userId}")
-    public Optional<Purchases> getPurchasesByUserId(@PathVariable Integer userId){
-        return purchasesService.getPurchasesByUserId(userId);
+    public List<Purchases> getPurchasesByUser(@PathVariable("userId") Integer userId){
+        return purchasesService.getPurchasesByUser(userId);
     }
 
     @PostMapping

@@ -1,7 +1,6 @@
 package mutual.funds.tables.purchases;
 
 
-import mutual.funds.tables.funds.Funds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +30,8 @@ public class PurchasesService {
 
     }
 
-    public Optional<Purchases> getPurchasesByUserId(Integer userId){
-        return purchasesRepository.findById(userId);
+    public List<Purchases> getPurchasesByUser(Integer userId){
+        return purchasesRepository.findAll();
 
     }
 
