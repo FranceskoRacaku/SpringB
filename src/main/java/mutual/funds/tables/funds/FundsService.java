@@ -3,18 +3,13 @@ package mutual.funds.tables.funds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.OptionPaneUI;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
 public class FundsService {
 
-    private List<Funds> funds = new ArrayList<>();
     private final FundsRepository fundsRepository;
 
     @Autowired
@@ -27,12 +22,8 @@ public class FundsService {
         return fundsRepository.findAll();
     }
 
-    public Funds getFund(String id){
-        return funds.stream()
-                .filter(t -> t.getId()
-                        .equals(id))
-                        .findFirst()
-                        .get();
+    public Optional<Funds> getFund(Integer id){
+        return fundsRepository.findById(id);
 
     }
 

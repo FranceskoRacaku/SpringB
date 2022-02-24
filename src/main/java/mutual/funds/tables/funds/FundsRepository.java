@@ -16,4 +16,5 @@ public interface FundsRepository
 
     @Query("SELECT s FROM Funds s WHERE s.name = ?1")
     Optional<Funds> findFundsByName(String name);
+
 }
