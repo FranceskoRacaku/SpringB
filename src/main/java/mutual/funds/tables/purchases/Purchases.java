@@ -12,10 +12,10 @@ public class Purchases {
             sequenceName = "purchases_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "purchases_sequence"
-    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "purchases_sequence"
+//    )
     private Integer id;
     private Float amount;
     private Integer fundId;

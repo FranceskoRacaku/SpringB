@@ -12,10 +12,10 @@ public class Funds {
             sequenceName = "funds_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "funds_sequence"
-    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "funds_sequence"
+//    )
     private Integer id;
     private String symbol;
     private String name;

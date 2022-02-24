@@ -7,13 +7,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
+@RestController
 @SpringBootApplication
 public class Funds {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(Funds.class, args);
+
+	}
+
+	@GetMapping
+	public String hello(){
+		return "Hello World";
 	}
 
 
