@@ -20,13 +20,13 @@ public class FundsController {
         this.fundsService = fundsService;
     }
 
-    @GetMapping
+
     public List<Funds> getFunds() {
         return fundsService.getFunds();
 
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/funds/{id}")
     Funds fund(@PathVariable Integer id){
         return fundsRepository.findById(id)
                 .orElseThrow(() -> new FundNotFoundException(id));
