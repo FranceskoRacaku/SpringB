@@ -31,7 +31,7 @@ public class PurchasesService {
 
     }
 
-    public Optional<Purchases> getPurchaseByUserId(Integer userId){
+    public Optional<Purchases> getPurchasesByUserId(Integer userId){
         return purchasesRepository.findById(userId);
 
     }

@@ -32,8 +32,8 @@ public class PurchasesController {
     }
 
     @GetMapping(path = "user/{userId}")
-    public Optional<Purchases> getPurchaseByUserId(@PathVariable Integer userId){
-        return purchasesService.getPurchase(userId);
+    public Optional<Purchases> getPurchasesByUserId(@PathVariable Integer userId){
+        return purchasesService.getPurchasesByUserId(userId);
     }
 
     @PostMapping
