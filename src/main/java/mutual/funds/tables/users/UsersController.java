@@ -3,9 +3,7 @@ package mutual.funds.tables.users;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,25 @@ public class UsersController {
     public List<Users> getUsers(){
         return usersService.getUsers();
 
+    }
+
+    @PostMapping
+    public void addUsers(@RequestBody Users users) {
+        usersService.addUsers(users);
+    }
+
+
+    @DeleteMapping(path = "{userId}")
+    public void deleteUser(@PathVariable("userId") Integer userId) {
+        usersService.deleteUser(userId);
+    }
+
+    @PutMapping(path = "{userId}")
+    public void updateUser(
+            @PathVariable("userId") Integer userId,
+            @RequestParam(required = false) String userName,
+            @RequestParam(required = false) String userEmail,
+            @RequestParam(required = false) Integer userAge){
+        usersService.updateUser(userId, userName, userEmail, userAge);
     }
 }

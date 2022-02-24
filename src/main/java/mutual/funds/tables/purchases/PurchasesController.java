@@ -2,9 +2,7 @@ package mutual.funds.tables.purchases;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +21,25 @@ public class PurchasesController {
     @GetMapping
     public List<Purchases> getPurchases(){
         return purchasesService.getPurchases();
+    }
 
+    @PostMapping
+    public void addPurchase(@RequestBody Purchases purchases) {
+        purchasesService.addPurchase(purchases);
+    }
+
+
+    @DeleteMapping(path = "{purchaseId}")
+    public void deletePurchase(@PathVariable("purchaseId") Integer purchaseId) {
+        purchasesService.deletePurchase(purchaseId);
+    }
+
+    @PutMapping(path = "{purchaseId}")
+    public void updatePurchase(
+            @PathVariable("purchaseId") Integer purchaseId,
+            @RequestParam(required = false) Float amount,
+            @RequestParam(required = false) Integer fundId,
+            @RequestParam(required = false) Integer userId){
+        purchasesService.updatePurchase(purchaseId, amount, fundId, userId);
     }
 }

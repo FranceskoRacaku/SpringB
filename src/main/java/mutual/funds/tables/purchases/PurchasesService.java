@@ -4,7 +4,10 @@ package mutual.funds.tables.purchases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 
 @Service
@@ -21,15 +24,36 @@ public class PurchasesService {
     public List<Purchases> getPurchases() {
         return purchasesRepository.findAll();
     }
-//    public List<Purchases> getPurchases(){
-//        return List.of(
-//                new Purchases(
-//                        1,
-//                        3F,
-//                        4,
-//                        6
-//
-//                )
-//        );
-//    }
+
+    public void addPurchase(Purchases purchases){
+        purchasesRepository.save(purchases);
+
+    }
+
+    public void deletePurchase(Integer purchaseId) {
+        boolean exists = purchasesRepository.existsById(purchaseId);
+        if (!exists){
+            throw new IllegalStateException(
+                    "Purchase with id "+ purchaseId + " does not exists!!");
+        }
+        purchasesRepository.deleteById(purchaseId);
+    }
+
+
+    @Transactional
+    public void updatePurchase(Integer purchaseId, Float amount, Integer fundId, Integer userId) {
+        Purchases purchases = purchasesRepository.findById(purchaseId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Purchase with id " + purchaseId + " does no exist!!")
+                );
+
+
+        if (amount != null &&
+                amount > 0 &&
+                !Objects.equals(purchases.getAmount(), amount)) {
+            purchases.setAmount(amount);
+        }
+
+    }
+
 }
