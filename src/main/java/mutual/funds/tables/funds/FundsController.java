@@ -12,6 +12,7 @@ import java.util.List;
 
 public class FundsController {
 
+    private FundsRepository fundsRepository;
     private final FundsService fundsService;
 
     @Autowired
@@ -23,6 +24,12 @@ public class FundsController {
     public List<Funds> getFunds() {
         return fundsService.getFunds();
 
+    }
+
+    @GetMapping("{id}")
+    Funds fund(@PathVariable Integer id){
+        return fundsRepository.findById(id)
+                .orElseThrow(() -> new FundNotFoundException(id));
     }
 
     @PostMapping
