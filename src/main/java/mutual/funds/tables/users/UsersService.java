@@ -2,6 +2,7 @@ package mutual.funds.tables.users;
 
 
 import mutual.funds.tables.funds.Funds;
+import mutual.funds.tables.purchases.Purchases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,11 @@ public class UsersService {
 
     public List<Users> getUsers() {
         return usersRepository.findAll();
+    }
+
+    public Optional<Users> getUser(Integer id){
+        return usersRepository.findById(id);
+
     }
 
     public void addUsers(Users users){

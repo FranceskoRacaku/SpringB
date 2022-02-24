@@ -1,10 +1,12 @@
 package mutual.funds.tables.purchases;
 
 
+import mutual.funds.tables.funds.Funds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -22,6 +24,11 @@ public class PurchasesController {
     @GetMapping
     public List<Purchases> getPurchases(){
         return purchasesService.getPurchases();
+    }
+
+    @GetMapping(path = "{id}")
+    public Optional<Purchases> getPurchase(@PathVariable Integer id){
+        return purchasesService.getPurchase(id);
     }
 
     @PostMapping

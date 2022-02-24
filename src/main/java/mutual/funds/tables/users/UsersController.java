@@ -2,10 +2,12 @@ package mutual.funds.tables.users;
 
 
 
+import mutual.funds.tables.purchases.Purchases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +27,12 @@ public class UsersController {
         return usersService.getUsers();
 
     }
+
+    @GetMapping(path = "{id}")
+    public Optional<Users> getUser(@PathVariable Integer id){
+        return usersService.getUser(id);
+    }
+
 
     @PostMapping
     public void addUsers(@RequestBody Users users) {
