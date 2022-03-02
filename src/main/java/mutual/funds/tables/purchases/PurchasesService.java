@@ -54,7 +54,7 @@ public class PurchasesService {
 
 
     @Transactional
-    public void updatePurchase(Integer purchaseId, Float amount, Integer fundId, Integer userId) {
+    public void updatePurchase(Integer purchaseId, Integer amount, Integer fundId, Integer userId) {
         Purchases purchases = purchasesRepository.findById(purchaseId)
                 .orElseThrow(() -> new IllegalStateException(
                         "Purchase with id " + purchaseId + " does no exist!!")

@@ -49,7 +49,7 @@ public class PurchasesController {
     @PutMapping(path = "{purchaseId}")
     public void updatePurchase(
             @PathVariable("purchaseId") Integer purchaseId,
-            @RequestParam(required = false) Float amount,
+            @RequestParam(required = false) Integer amount,
             @RequestParam(required = false) Integer fundId,
             @RequestParam(required = false) Integer userId){
         purchasesService.updatePurchase(purchaseId, amount, fundId, userId);

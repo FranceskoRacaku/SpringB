@@ -9,7 +9,7 @@ public class Purchases {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Float amount;
+    private Integer amount;
     private Integer fundId;
     private Integer userId;
 
@@ -18,7 +18,7 @@ public class Purchases {
     }
 
     public Purchases(Integer id,
-                     Float amount,
+                     Integer amount,
                      Integer fundId,
                      Integer userId ) {
         this.id = id;
@@ -27,7 +27,7 @@ public class Purchases {
         this.userId = userId;
     }
 
-    public Purchases(Float amount,
+    public Purchases(Integer amount,
                      Integer fundId,
                      Integer userId ) {
         this.amount = amount;
@@ -44,11 +44,11 @@ public class Purchases {
         this.id = id;
     }
 
-    public Float getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Float amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
