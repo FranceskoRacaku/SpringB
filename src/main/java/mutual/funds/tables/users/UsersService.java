@@ -1,15 +1,13 @@
 package mutual.funds.tables.users;
 
 
-import mutual.funds.tables.funds.Funds;
-import mutual.funds.tables.purchases.Purchases;
+
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -90,6 +88,23 @@ public class UsersService {
 
         Users existingUser = usersRepository.findById(userId).orElseThrow(
                 () -> new ResourceNotFoundException("USER Id" + userId));
+
+//        if (userName != null &&
+//                userName.length() > 0 &&
+//                !Objects.equals(users.getUserName(), userName)) {
+//            existingUser.setUserName(user.getUserName());
+//        }
+//
+//        if (userEmail != null &&
+//                userEmail.length() > 0 &&
+//                !Objects.equals(user.getUserEmail(), userEmail)) {
+//            Optional<Users> usersOptional = usersRepository
+//                    .findUsersByUserEmail(userEmail);
+//            if (usersOptional.isPresent()) {
+//                throw new IllegalStateException("Email Taken");
+//            }
+//            existingUser.setUserEmail(user.getUserEmail());
+//        }
 
         existingUser.setUserName(user.getUserName());
         existingUser.setUserEmail(user.getUserEmail());

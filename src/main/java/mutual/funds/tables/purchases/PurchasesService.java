@@ -2,11 +2,9 @@ package mutual.funds.tables.purchases;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

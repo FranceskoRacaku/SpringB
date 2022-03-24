@@ -2,8 +2,7 @@ package mutual.funds.tables.users;
 
 
 
-import mutual.funds.tables.purchases.Purchases;
-import org.apache.velocity.exception.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+// @CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://springfrontend.herokuapp.com")
 @RequestMapping(path = "users")
 
 public class UsersController {
